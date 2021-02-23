@@ -14,7 +14,7 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String reverse(String string) {
-		char[] reversed = new char[string.length()];
+		char[] reversed = new char[string.length()]; //creates a char array the same length as the string
 		for (int i = reversed.length - 1, j=0; i >= 0; i--, j++) {
 			reversed[j] = string.charAt(i);
 		}
@@ -31,7 +31,13 @@ public class EvaluationService {
 	 */
 	public String acronym(String phrase) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		char c[] = phrase.toCharArray();
+		String newAcronym = "";
+		for (int i = 0; i < c.length; i++) {
+			newAcronym += c[i];
+		}
+		return newAcronym;
+		//return null;
 	}
 
 	/**
