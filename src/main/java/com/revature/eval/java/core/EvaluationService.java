@@ -238,14 +238,29 @@ public class EvaluationService {
 		// TODO Write an implementation for this method declaration
 		
 		// loop through string. check if digit or not
-		String newString = string.replaceAll("\\s", "");
-		System.out.println("Old String: " + string + " is now: " + newString);
-		
+		String newString = "";
+		for (int i = 0; i < string.length(); i++) {
+			if (Character.isDigit(string.charAt(i))) {
+				newString += Character.toString(string.charAt(i));
+			}
+		}
+		System.out.println("Old number: " + string + " is now " + newString);
 		
 		// if length valid, check for format following
 		// 1 (NXX)-NXX-XXXX where N is any digit from 2 through 9 and X is any digit
 		// from 0 through 9.
-		return null;
+		
+		if (newString.length() != 10) {
+			throw new IllegalArgumentException();
+		
+		}
+		
+		if ((Integer.parseInt(newString.valueOf(0)) == 1) || (Integer.parseInt(newString.valueOf(3)) == 1)) {
+			throw new IllegalArgumentException();
+		}
+		
+		
+		return newString;
 	}
 
 	/**
