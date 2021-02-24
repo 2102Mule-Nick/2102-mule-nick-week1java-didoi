@@ -18,6 +18,7 @@ public class EvaluationService {
 		for (int i = reversed.length - 1, j=0; i >= 0; i--, j++) {
 			reversed[j] = string.charAt(i);
 		}
+		System.out.println(new String(reversed));
 		return new String(reversed);
 	}
 
@@ -34,9 +35,11 @@ public class EvaluationService {
 		char c[] = phrase.toCharArray();
 		String newAcronym = "";
 		for (int i = 0; i < c.length; i++) {
+			if(c[i] != ' ' && (i == 0 || c[i-1] == ' '))
 			newAcronym += c[i];
 		}
-		return newAcronym;
+		System.out.println(newAcronym.toUpperCase());
+		return newAcronym.toUpperCase();
 		//return null;
 	}
 
@@ -91,17 +94,44 @@ public class EvaluationService {
 
 		public boolean isEquilateral() {
 			// TODO Write an implementation for this method declaration
-			return false;
+			boolean result = false;
+			if (sideOne == sideTwo && sideTwo == sideThree) {
+				result = true;
+			}
+			else {
+				result = false;
+			}
+			System.out.println("isEquilateral: " + result);
+			return result;
 		}
 
 		public boolean isIsosceles() {
 			// TODO Write an implementation for this method declaration
-			return false;
+			boolean result = false;
+			if (sideOne == sideTwo || sideOne == sideThree) {
+				result = true;
+			}
+			else if (sideTwo == sideThree) {
+				result = true;
+			}
+			else {
+				result = false;
+			}
+			System.out.println("isIsosceles: " + result);
+			return result;
 		}
 
 		public boolean isScalene() {
 			// TODO Write an implementation for this method declaration
-			return false;
+			boolean result = false;
+			if ((sideOne != sideTwo) && (sideOne != sideThree) && (sideTwo != sideThree)) {
+				result = true;
+			}
+			else {
+				result = false;
+			}
+			System.out.println("isScalene: " + result);
+			return result;
 		}
 
 	}
@@ -123,7 +153,54 @@ public class EvaluationService {
 	 */
 	public int getScrabbleScore(String string) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+		int totalScore = 0;
+		for (int i = 0; i < string.length(); i++) {
+			String x = Character.toString(string.charAt(i));
+			switch (x.toUpperCase()) {
+			case "A":
+			case "E":
+			case "I":
+			case "O":
+			case "U":
+			case "L":
+			case "N":
+			case "R":
+			case "S":
+			case "T":
+				totalScore += 1;
+				break;
+			case "D":
+			case "G": 
+				totalScore += 2;
+				break;
+			case "B":
+			case "C":
+			case "M":
+			case "P":
+				totalScore += 3;
+				break;
+			case "F":
+			case "H":
+			case "V":
+			case "W":
+			case "Y":
+				totalScore += 4;
+				break;
+			case "K":
+				totalScore += 5;
+				break;
+			case "J":
+			case "X":
+				totalScore += 8;
+				break;
+			case "Q":
+			case "Z":
+				totalScore += 10;
+				break;
+			}
+		}
+		System.out.println("Total Score: " + totalScore);
+		return totalScore;
 	}
 
 	/**
@@ -149,7 +226,7 @@ public class EvaluationService {
 	 * 
 	 * For example, the inputs
 	 * 
-	 * +1 (613)-995-0253 613-995-0253 1 613 995 0253 613.995.0253 should all produce
+	 * +1 (613)-995-0253 | 613-995-0253 | 1 613 995 0253 | 613.995.0253 should all produce
 	 * the output
 	 * 
 	 * 6139950253
@@ -159,6 +236,15 @@ public class EvaluationService {
 	 */
 	public String cleanPhoneNumber(String string) {
 		// TODO Write an implementation for this method declaration
+		
+		// loop through string. check if digit or not
+		String newString = string.replaceAll("\\s", "");
+		System.out.println("Old String: " + string + " is now: " + newString);
+		
+		
+		// if length valid, check for format following
+		// 1 (NXX)-NXX-XXXX where N is any digit from 2 through 9 and X is any digit
+		// from 0 through 9.
 		return null;
 	}
 
