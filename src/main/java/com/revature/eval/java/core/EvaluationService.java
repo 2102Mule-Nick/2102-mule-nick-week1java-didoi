@@ -1,6 +1,7 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -275,7 +276,7 @@ public class EvaluationService {
 	 */
 	public Map<String, Integer> wordCount(String string) {
 		// TODO Write an implementation for this method declaration
-		String[] arrayString = string.split("\\s");
+		String[] arrayString = string.split("[\\s,\\n]+");
 		Map<String, Integer> map = new HashMap<>();
 		for (int i = 0; i < arrayString.length; i++) {
 			if (map.containsKey(arrayString[i])) {
@@ -332,7 +333,11 @@ public class EvaluationService {
 
 		public int indexOf(T t) {
 			// TODO Write an implementation for this method declaration
-			return 0;
+			int index = 0;
+			index = Collections.binarySearch(getSortedList(), t);
+			
+			
+			return index;
 		}
 
 		public BinarySearch(List<T> sortedList) {
@@ -369,7 +374,34 @@ public class EvaluationService {
 	 */
 	public String toPigLatin(String string) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		String pigLatin = "";
+		
+		String[] arrayString = string.split("[\\s,\\n]+");
+		for (int i = 0; i < arrayString.length; i++) {
+			if (arrayString[i].substring(0,1).toUpperCase().equals("A") || arrayString[i].substring(0,1).toUpperCase().equals("E") || arrayString[i].substring(0,1).toUpperCase().equals("I") || arrayString[i].substring(0,1).toUpperCase().equals("O") || arrayString[i].substring(0,1).toUpperCase().equals("U")) {
+				String tempString = arrayString[i] + "ay";
+				arrayString[i] = tempString;
+				//System.out.println(arrayString[i]);
+			}
+			else {
+				String tempString = arrayString[i].substring(1) + arrayString[i].substring(0,1) + "ay";
+				arrayString[i] = tempString;
+				System.out.println(arrayString[i]);
+			}
+			
+			pigLatin += arrayString[i];
+		}
+		
+		/* back up if splitting a single word causes any issue
+		//look for word separator
+		if (string.contains(" ")) {
+			arrayString = string.split("[\\s,\\n]+");
+		}
+		*/
+		
+		System.out.println(pigLatin);
+		
+		return pigLatin;
 	}
 
 	/**
