@@ -390,6 +390,9 @@ public class EvaluationService {
 			}
 			
 			pigLatin += arrayString[i];
+			if (arrayString.length > 1 && (i < arrayString.length - 1)) {
+				pigLatin += " ";
+			}
 		}
 		
 		/* back up if splitting a single word causes any issue
@@ -421,7 +424,27 @@ public class EvaluationService {
 	 */
 	public boolean isArmstrongNumber(int input) {
 		// TODO Write an implementation for this method declaration
-		return false;
+		
+		boolean resultFlag = false;
+		String inputInteger = Integer.toString(input);
+		char[] inputArray = inputInteger.toCharArray();
+		int inputTotal = 0;
+		
+		int numberOfDigits = inputArray.length;
+		System.out.println("Number of Digits " + numberOfDigits);
+		
+		for (int i = 0; i < inputArray.length; i++) {
+			inputTotal += Math.pow(Integer.parseInt(String.valueOf(inputArray[i])), numberOfDigits);
+			System.out.println("Current Digit " + Integer.parseInt(String.valueOf(inputArray[i])));
+			System.out.println("Input Total: " + inputTotal);
+		}
+		if (inputTotal == input) {
+			resultFlag = true;
+		}
+		
+		//System.out.println(inputTotal);
+		
+		return resultFlag;
 	}
 
 	/**
