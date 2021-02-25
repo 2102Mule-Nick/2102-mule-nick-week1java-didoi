@@ -1,6 +1,7 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -459,7 +460,19 @@ public class EvaluationService {
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		List<Long> results = new ArrayList<Long>();
+		for (int i = 2; i <= l / i; i++) {
+			while (l % i == 0) {
+				results.add((long) i);
+				l /= i;
+			}
+		}
+		
+		if (l > 1) {
+			results.add(l);
+		}
+		
+		return results;
 	}
 
 	/**
