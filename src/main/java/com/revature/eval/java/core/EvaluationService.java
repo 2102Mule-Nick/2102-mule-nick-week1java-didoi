@@ -511,7 +511,17 @@ public class EvaluationService {
 
 		public String rotate(String string) {
 			// TODO Write an implementation for this method declaration
-			return null;
+			String newString = "";
+			for (char character : string.toCharArray()) {
+				if (character != ' ') {
+					int originalPosition = character - 'a';
+					int newPosition = (originalPosition+ this.key) % 26;
+					char newCharacter = (char) ('a' + newPosition);
+					newString += (Character.toString(newCharacter));
+				}
+			}
+			
+			return newString;
 		}
 
 	}
