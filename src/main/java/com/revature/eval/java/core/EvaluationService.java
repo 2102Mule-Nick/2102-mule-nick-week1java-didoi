@@ -658,7 +658,22 @@ public class EvaluationService {
 		 */
 		public static String decode(String string) {
 			// TODO Write an implementation for this method declaration
-			return null;
+			populateMap();
+			
+			String[] stringArray = string.split("");
+			String plainMessage = "";
+			
+			for (int i = 0; i < stringArray.length; i++) {
+				for(String key : atBash.keySet()) {
+					//System.out.println(stringArray[i]);
+					if (atBash.get(key).toLowerCase().equals(stringArray[i].toLowerCase())){
+						plainMessage += key;
+						System.out.println(plainMessage);
+					}
+				}
+			}
+			
+			return plainMessage.toLowerCase();
 		}
 	}
 
