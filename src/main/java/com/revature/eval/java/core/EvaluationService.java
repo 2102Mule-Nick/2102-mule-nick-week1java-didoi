@@ -461,10 +461,12 @@ public class EvaluationService {
 	public List<Long> calculatePrimeFactorsOf(long l) {
 		// TODO Write an implementation for this method declaration
 		List<Long> results = new ArrayList<Long>();
+		System.out.println("L value at start is: " + l);
 		for (int i = 2; i <= l / i; i++) {
 			while (l % i == 0) {
 				results.add((long) i);
 				l /= i;
+				System.out.println("i value currently is: " + i);
 			}
 		}
 		
@@ -540,7 +542,30 @@ public class EvaluationService {
 	 */
 	public int calculateNthPrime(int i) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+		//calculates if a number is a prime
+		int resultPrime = 1;
+		int count = 0;
+		int x;
+		
+		if (i <= 0) {
+			throw new IllegalArgumentException();
+		}
+		
+		while (count < i) {
+			resultPrime += 1;
+			for (x = 2; x <= resultPrime; x++) {
+				if (resultPrime % x == 0) {
+					break;
+				}
+			}
+			if (x == resultPrime) {
+				count++;
+			}
+		}
+		
+		
+		
+		return resultPrime;
 	}
 
 	/**
