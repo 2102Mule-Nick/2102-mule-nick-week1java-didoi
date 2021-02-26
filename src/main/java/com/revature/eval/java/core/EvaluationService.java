@@ -701,7 +701,36 @@ public class EvaluationService {
 	 */
 	public boolean isValidIsbn(String string) {
 		// TODO Write an implementation for this method declaration
-		return false;
+		int[] isbnChecker = new int[] {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+		boolean valid = false;
+		int calculationValue = 0;
+		
+		ArrayList<String> tempString = new ArrayList<String>();
+		for (int i = 0; i < string.length(); i++) {
+				if (Character.isDigit(string.charAt(i)) || (string.charAt(i) == 'X')) {
+					tempString.add(Character.toString(string.charAt(i)));
+				}
+		}
+		if (tempString.size() == 10) {
+			for (int i = 0; i < tempString.size(); i++) {
+				if (i == 9) {
+					if (tempString.get(i).equals("X")) {
+						calculationValue += isbnChecker[i] * 10;
+					}
+					else {
+						calculationValue += isbnChecker[i] *  Integer.parseInt(tempString.get(i));
+					}
+				}
+				else {
+					calculationValue += isbnChecker[i] *  Integer.parseInt(tempString.get(i));
+				}
+			}
+		}
+		
+		if (calculationValue % 11 == 0) {
+			valid = true;
+		}
+		return valid;
 	}
 
 	/**
