@@ -600,9 +600,54 @@ public class EvaluationService {
 		 * @param string
 		 * @return
 		 */
+		
+		//added code for hashmap for decoding
+		static Map<String, String> atBash = new HashMap<>();
+		
+		public static void populateMap() {
+			atBash.put("A", "Z");
+			atBash.put("B", "Y");
+			atBash.put("C", "X");
+			atBash.put("D", "W");
+			atBash.put("E", "V");
+			atBash.put("F", "U");
+			atBash.put("G", "T");
+			atBash.put("H", "S");
+			atBash.put("I", "R");
+			atBash.put("J", "Q");
+			atBash.put("K", "P");
+			atBash.put("L", "O");
+			atBash.put("M", "N");
+			atBash.put("N", "M");
+			atBash.put("O", "L");
+			atBash.put("P", "K");
+			atBash.put("Q", "J");
+			atBash.put("R", "I");
+			atBash.put("S", "H");
+			atBash.put("T", "G");
+			atBash.put("U", "F");
+			atBash.put("V", "E");
+			atBash.put("W", "D");
+			atBash.put("X", "C");
+			atBash.put("Y", "B");
+			atBash.put("Z", "A");
+		}
+		
 		public static String encode(String string) {
 			// TODO Write an implementation for this method declaration
-			return null;
+			populateMap();
+			String[] stringArray = string.split("");
+			String code = "";
+			
+			for (int i = 0; i < stringArray.length; i++) {
+				code += atBash.get(stringArray[i].toUpperCase());
+				if ((i+1) % 5 == 0) {
+					code += " ";
+					System.out.println("i is " + i + " modulo " + i % 5);			
+				}
+			}
+			System.out.println("encoded: " + code);
+			return code.toLowerCase();
 		}
 
 		/**
