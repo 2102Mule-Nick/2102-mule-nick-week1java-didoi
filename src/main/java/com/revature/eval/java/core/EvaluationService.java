@@ -726,10 +726,13 @@ public class EvaluationService {
 				}
 			}
 		}
+		System.out.println(calculationValue);
 		
-		if (calculationValue % 11 == 0) {
+		if ((calculationValue != 0) && (calculationValue % 11 == 0)) {
 			valid = true;
 		}
+		
+		System.out.println(valid);
 		return valid;
 	}
 
